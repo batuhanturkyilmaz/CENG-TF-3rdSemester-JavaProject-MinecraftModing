@@ -1,5 +1,5 @@
 package net.javaprojesi.logicgate;
-
+//github commit example.
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.level.block.Blocks;
