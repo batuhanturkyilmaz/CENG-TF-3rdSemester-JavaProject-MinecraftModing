@@ -1,7 +1,11 @@
 package net.javaprojesi.logicgate;
 //github commit example.
 import com.mojang.logging.LogUtils;
+import net.javaprojesi.logicgate.block.ModBlocks;
+import net.javaprojesi.logicgate.item.Moditems;
 import net.minecraft.client.Minecraft;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -37,6 +41,10 @@ public class logicGateMod
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
 
+        //buranın alt kısmına registerleri yazıyoruz
+        Moditems.register(modEventBus);
+        ModBlocks.register(modEventBus);
+
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
 
@@ -60,7 +68,15 @@ public class logicGateMod
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event)
     {
+        if(event.getTabKey() == CreativeModeTabs.INGREDIENTS){ //buranın altına eklenecek eşyaların girişini yapıyoruz
+            event.accept(Moditems.ALEXANDRITE);
+            event.accept(Moditems.RAW_ALEXANDRITE);
+        }
 
+        if(event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS){//buranın altına eklenecek blokların girişini yapıyoruz
+            event.accept(ModBlocks.ALEXANDRITE_BLOCK);
+            event.accept(ModBlocks.RAW_ALEXANDRITE_BLOCK);
+        }
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
