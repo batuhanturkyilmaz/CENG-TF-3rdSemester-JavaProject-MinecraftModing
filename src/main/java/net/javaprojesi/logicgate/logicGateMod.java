@@ -76,6 +76,8 @@ public class logicGateMod
         if(event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS){//buranın altına eklenecek blokların girişini yapıyoruz
             event.accept(ModBlocks.ALEXANDRITE_BLOCK);
             event.accept(ModBlocks.RAW_ALEXANDRITE_BLOCK);
+            event.accept(ModBlocks.ALEXANDRITE_DEEPSLATE_ORE);
+            event.accept(ModBlocks.ALEXANDRITE_ORE);
         }
     }
 

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "logicgateid:block/alexandrite_deepslate_ore"
+  }
+}
