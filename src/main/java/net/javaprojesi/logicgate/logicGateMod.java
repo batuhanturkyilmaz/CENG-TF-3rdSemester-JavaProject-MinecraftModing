@@ -2,6 +2,7 @@ package net.javaprojesi.logicgate;
 //github commit example.
 import com.mojang.logging.LogUtils;
 import net.javaprojesi.logicgate.block.ModBlocks;
+import net.javaprojesi.logicgate.item.ModCreativeModeTabs;
 import net.javaprojesi.logicgate.item.Moditems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.item.CreativeModeTab;
@@ -40,6 +41,10 @@ public class logicGateMod
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
+
+        //burada tabları kaydeidyoruz
+        ModCreativeModeTabs.register(modEventBus);
+
 
         //buranın alt kısmına registerleri yazıyoruz
         Moditems.register(modEventBus);

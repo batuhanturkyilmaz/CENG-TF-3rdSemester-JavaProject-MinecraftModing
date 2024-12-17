@@ -22,6 +22,15 @@ public class ModBlocks {
             DeferredRegister.create(ForgeRegistries.BLOCKS, logicGateMod.MOD_ID );
             //burada logicGateMod.MOD_ID dediğimiz, logicGateMod içinde @Mod() parantez içindeki kısmı içermelidir
 
+
+
+
+
+
+
+
+
+
     public static final RegistryObject<Block> ALEXANDRITE_BLOCK = registerBlock("alexandrite_block",
             () -> new Block(BlockBehaviour.Properties.of()
                     .strength(4f).requiresCorrectToolForDrops().sound(SoundType.AMETHYST)));
