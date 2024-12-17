@@ -12,7 +12,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
-
+//and
 public class AndGateBlock extends Block {
     // Giriş ve çıkış durumları
     public static final BooleanProperty INPUT1 = BooleanProperty.create("input1");
