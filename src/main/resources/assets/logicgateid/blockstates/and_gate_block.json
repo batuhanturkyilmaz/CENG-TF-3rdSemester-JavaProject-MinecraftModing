@@ -1,7 +1,9 @@
 {
+
   "variants": {
-    "": {
-      "model": "logicgateid:block/and_gate_block"
-    }
+    "facing=north": { "model": "logicgateid:block/and_gate_block", "y": 0 },
+    "facing=east": { "model": "logicgateid:block/and_gate_block", "y": 90 },
+    "facing=south": { "model": "logicgateid:block/and_gate_block", "y": 180 },
+    "facing=west": { "model": "logicgateid:block/and_gate_block", "y": 270 }
   }
 }
