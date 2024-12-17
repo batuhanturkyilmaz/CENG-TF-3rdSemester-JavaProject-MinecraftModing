@@ -29,7 +29,8 @@ public class ModBlocks {
 
 
 
-
+    public static final RegistryObject<Block> AND_GATE_BLOCK = registerBlock("and_gate_block",
+            () -> new AndGateBlock());
 
     public static final RegistryObject<Block> ALEXANDRITE_BLOCK = registerBlock("alexandrite_block",
             () -> new Block(BlockBehaviour.Properties.of()

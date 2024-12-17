@@ -1,6 +1,7 @@
 package net.javaprojesi.logicgate;
 //github commit example.
 import com.mojang.logging.LogUtils;
+import net.javaprojesi.logicgate.block.AndGateBlock;
 import net.javaprojesi.logicgate.block.ModBlocks;
 import net.javaprojesi.logicgate.item.ModCreativeModeTabs;
 import net.javaprojesi.logicgate.item.Moditems;
@@ -83,6 +84,7 @@ public class logicGateMod
             event.accept(ModBlocks.RAW_ALEXANDRITE_BLOCK);
             event.accept(ModBlocks.ALEXANDRITE_DEEPSLATE_ORE);
             event.accept(ModBlocks.ALEXANDRITE_ORE);
+            event.accept(ModBlocks.AND_GATE_BLOCK);
         }
     }
 

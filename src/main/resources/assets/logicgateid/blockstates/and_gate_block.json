@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "logicgateid:block/and_gate_block"
+    }
+  }
+}
