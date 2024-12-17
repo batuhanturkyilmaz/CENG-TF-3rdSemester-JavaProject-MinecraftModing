@@ -35,6 +35,8 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.ALEXANDRITE_ORE.get());
                         output.accept(ModBlocks.ALEXANDRITE_DEEPSLATE_ORE.get());
 
+                        output.accept(ModBlocks.AND_GATE_BLOCK.get());
+
                     }).build());
 
     public static void register(IEventBus eventBus) {
