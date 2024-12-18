@@ -1,11 +1,9 @@
+
 {
-  "parent": "minecraft:block/cube",
+  "parent": "minecraft:block/slab",
   "textures": {
-    "up": "logicgateid:block/or_gate_block_top",
-    "down": "logicgateid:block/or_gate_block_bottom",
-    "north": "logicgateid:block/or_gate_block_front",
-    "south": "logicgateid:block/or_gate_block_side",
-    "east": "logicgateid:block/or_gate_block_side",
-    "west": "logicgateid:block/or_gate_block_side"
+    "top": "logicgateid:block/or_gate_block_top",
+    "bottom": "logicgateid:block/or_gate_block_bottom",
+    "side": "logicgateid:block/or_gate_block_side"
   }
 }

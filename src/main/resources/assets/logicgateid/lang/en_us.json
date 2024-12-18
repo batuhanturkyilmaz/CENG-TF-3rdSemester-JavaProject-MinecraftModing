@@ -8,6 +8,6 @@
   "block.logicgateid.and_gate_block": "And Gate",
   "block.logicgateid.or_gate_block": "Or Gate",
   "creativetab.logicgateid.alexandrite_items": "Esyalar 1",
-  "creativetab.logicgateid.alexandrite_blocks": "Esyalar 2"
-
+  "creativetab.logicgateid.alexandrite_blocks": "Esyalar 2",
+  "creativetab.logicgateid.logic_gate_blocks": "Logic Gate Items"
 }

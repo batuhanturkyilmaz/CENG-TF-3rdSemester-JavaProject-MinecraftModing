@@ -12,6 +12,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.phys.shapes.Shapes;
 //OR
 public class OrGateBlock extends Block {
     // Giriş ve çıkış durumları
@@ -28,6 +30,21 @@ public class OrGateBlock extends Block {
                 .setValue(OUTPUT, false)
                 .setValue(FACING, Direction.NORTH));
     }
+
+
+    //bu iki lanet olası kod bloğun şeklini yarıya düşürdüğümde bir blokmuşo gibi algılamamasını sağlıyor. Süper. Ç ok uğraştırdı
+    @Override
+    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, net.minecraft.world.phys.shapes.CollisionContext context) {
+        // Bloğun üst kısmı slab yüksekliğinde olacak şekilde ayarlanıyor
+        return Shapes.box(0.0, 0.0, 0.0, 1.0, 0.5, 1.0);
+    }
+
+    @Override
+    public VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, net.minecraft.world.phys.shapes.CollisionContext context) {
+        // Çarpışma kutusu slab yüksekliğine göre ayarlanıyor
+        return Shapes.box(0.0, 0.0, 0.0, 1.0, 0.5, 1.0);
+    }
+
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
