@@ -27,7 +27,8 @@ public class ModBlocks {
 
 
 
-
+    public static final RegistryObject<Block> OR_GATE_BLOCK = registerBlock("or_gate_block",
+            ()-> new OrGateBlock());
 
     public static final RegistryObject<Block> AND_GATE_BLOCK = registerBlock("and_gate_block",
             () -> new AndGateBlock());
@@ -49,6 +50,9 @@ public class ModBlocks {
     public static final RegistryObject<Block> ALEXANDRITE_DEEPSLATE_ORE = registerBlock("alexandrite_deepslate_ore",
             () -> new DropExperienceBlock(UniformInt.of(3,6), BlockBehaviour.Properties.of()
                     .strength(5f).requiresCorrectToolForDrops().sound(SoundType.DEEPSLATE)));
+
+
+
 
 
 

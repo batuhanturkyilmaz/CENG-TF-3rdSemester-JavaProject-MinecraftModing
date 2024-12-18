@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "up": "logicgateid:block/or_gate_block_top",
+    "down": "logicgateid:block/or_gate_block_bottom",
+    "north": "logicgateid:block/or_gate_block_front",
+    "south": "logicgateid:block/or_gate_block_side",
+    "east": "logicgateid:block/or_gate_block_side",
+    "west": "logicgateid:block/or_gate_block_side"
+  }
+}
