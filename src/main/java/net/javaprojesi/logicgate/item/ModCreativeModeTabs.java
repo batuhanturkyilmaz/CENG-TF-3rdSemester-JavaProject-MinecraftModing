@@ -39,6 +39,23 @@ public class ModCreativeModeTabs {
 
                     }).build());
 
+
+
+    public static final RegistryObject<CreativeModeTab> LOGIC_GATE_BLOCKS_TAB = CREATIVE_MODE_TABS.register("logic_gate_blocks_tab",
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModBlocks.OR_GATE_BLOCK.get()))
+                    .withTabsBefore(ALEXANDRITE_BLOCKS_TAB.getId())
+                    .title(Component.translatable("creativetab.logicgateid.logic_gate_blocks"))
+                    .displayItems((itemDisplayParameters, output) -> {
+
+                        output.accept(ModBlocks.OR_GATE_BLOCK.get());
+                        output.accept(ModBlocks.AND_GATE_BLOCK.get());
+
+                    }).build());
+
+
+
+
+
     public static void register(IEventBus eventBus) {
         CREATIVE_MODE_TABS.register(eventBus);
     }

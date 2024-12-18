@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:redstone"
+    },
+    "B": {
+      "item": "minecraft:lever"
+    }
+  },
+  "pattern": [
+    "ABA",
+    "A A",
+    "ABA"
+  ],
+  "result": {
+    "count": 1,
+    "id": "logicgateid:or_gate_block"
+  }
+}

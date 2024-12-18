@@ -5,6 +5,7 @@
     "logicgateid:raw_alexandrite_block",
     "logicgateid:alexandrite_ore",
     "logicgateid:alexandrite_deepslate_ore",
-    "logicgateid:and_gate_block"
+    "logicgateid:and_gate_block",
+    "logicgateid:or_gate_block"
   ]
 }
