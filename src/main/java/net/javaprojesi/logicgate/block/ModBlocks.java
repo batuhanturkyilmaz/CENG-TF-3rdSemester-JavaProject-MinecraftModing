@@ -17,15 +17,17 @@ import java.util.function.Supplier;
 
 
 
-public class ModBlocks {
+public class ModBlocks implements registeryEs {
     public static final DeferredRegister<Block> BLOCKS =
             DeferredRegister.create(ForgeRegistries.BLOCKS, logicGateMod.MOD_ID );
             //burada logicGateMod.MOD_ID dediğimiz, logicGateMod içinde @Mod() parantez içindeki kısmı içermelidir
 
 
+    public static final RegistryObject<Block> NOR_GATE_BLOCK = registerBlock("nor_gate_block",
+            ()-> new NorGateBlock());
 
-
-
+    public static final RegistryObject<Block> NAND_GATE_BLOCK = registerBlock("nand_gate_block",
+            ()-> new NandGateBlock());
 
     public static final RegistryObject<Block> OR_GATE_BLOCK = registerBlock("or_gate_block",
             ()-> new OrGateBlock());
@@ -70,3 +72,9 @@ public class ModBlocks {
         BLOCKS.register(eventBus);
     }
 }
+
+
+interface registeryEs{
+
+}
+

@@ -1,0 +1,9 @@
+
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "top": "logicgateid:block/nor_gate_block_top",
+    "bottom": "logicgateid:block/nor_gate_block_bottom",
+    "side": "logicgateid:block/nor_gate_block_side"
+  }
+}

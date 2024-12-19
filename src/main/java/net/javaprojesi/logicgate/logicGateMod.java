@@ -86,6 +86,8 @@ public class logicGateMod
             event.accept(ModBlocks.ALEXANDRITE_ORE);
             event.accept(ModBlocks.AND_GATE_BLOCK);
             event.accept(ModBlocks.OR_GATE_BLOCK);
+            event.accept(ModBlocks.NAND_GATE_BLOCK);
+            event.accept(ModBlocks.NOR_GATE_BLOCK);
         }
     }
 
