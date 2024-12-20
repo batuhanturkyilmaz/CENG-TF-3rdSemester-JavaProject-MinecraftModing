@@ -6,12 +6,16 @@ import net.javaprojesi.logicgate.block.ModBlocks;
 import net.javaprojesi.logicgate.item.ModCreativeModeTabs;
 import net.javaprojesi.logicgate.item.Moditems;
 import net.minecraft.client.Minecraft;
+import net.minecraft.nbt.TextComponentTagVisitor;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.item.WrittenBookItem;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -23,6 +27,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.slf4j.Logger;
+
+import java.awt.*;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(logicGateMod.MOD_ID)
@@ -71,6 +77,9 @@ public class logicGateMod
         Config.items.forEach((item) -> LOGGER.info("ITEM >> {}", item.toString()));
     }
 
+
+
+
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event)
     {
@@ -88,8 +97,13 @@ public class logicGateMod
             event.accept(ModBlocks.OR_GATE_BLOCK);
             event.accept(ModBlocks.NAND_GATE_BLOCK);
             event.accept(ModBlocks.NOR_GATE_BLOCK);
+            event.accept(ModBlocks.XOR_GATE_BLOCK);
+            event.accept(ModBlocks.XNOR_GATE_BLOCK);
         }
     }
+
+
+
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
     @SubscribeEvent
@@ -98,6 +112,9 @@ public class logicGateMod
         // Do something when the server starts
         LOGGER.info("HELLO from server starting");
     }
+
+
+
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
     @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)

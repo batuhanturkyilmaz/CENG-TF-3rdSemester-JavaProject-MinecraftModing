@@ -50,6 +50,8 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.AND_GATE_BLOCK.get());
                         output.accept(ModBlocks.NAND_GATE_BLOCK.get());
                         output.accept(ModBlocks.NOR_GATE_BLOCK.get());
+                        output.accept(ModBlocks.XOR_GATE_BLOCK.get());
+                        output.accept(ModBlocks.XNOR_GATE_BLOCK.get());
 
                     }).build());
 

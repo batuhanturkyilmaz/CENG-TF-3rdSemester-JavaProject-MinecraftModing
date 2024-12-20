@@ -23,6 +23,12 @@ public class ModBlocks implements registeryEs {
             //burada logicGateMod.MOD_ID dediğimiz, logicGateMod içinde @Mod() parantez içindeki kısmı içermelidir
 
 
+    public static final RegistryObject<Block> XNOR_GATE_BLOCK = registerBlock("xnor_gate_block",
+            ()-> new XnorGateBlock());
+
+    public static final RegistryObject<Block> XOR_GATE_BLOCK = registerBlock("xor_gate_block",
+            ()-> new XorGateBlock());
+
     public static final RegistryObject<Block> NOR_GATE_BLOCK = registerBlock("nor_gate_block",
             ()-> new NorGateBlock());
 
