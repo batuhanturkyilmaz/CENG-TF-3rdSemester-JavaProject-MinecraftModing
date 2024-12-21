@@ -1,11 +1,11 @@
 {
   "replace": false,
   "values": [
-    "logicgateid:alexandrite_block",
-    "logicgateid:raw_alexandrite_block",
-    "logicgateid:alexandrite_ore",
-    "logicgateid:alexandrite_deepslate_ore",
     "logicgateid:and_gate_block",
-    "logicgateid:or_gate_block"
+    "logicgateid:or_gate_block",
+    "logicgateid:nor_gate_block",
+    "logicgateid:nand_gate_block",
+    "logicgateid:xor_gate_block",
+    "logicgateid:xnor_gate_block"
   ]
 }

@@ -3,25 +3,22 @@
   "category": "misc",
   "key": {
     "A": {
-      "item": "minecraft:redstone"
+      "item": "logicgateid:and_gate_block"
     },
     "B": {
-      "item": "minecraft:lever"
+      "item": "logicgateid:nand_gate_block"
     },
     "C": {
-    "item": "minecraft:redstone_torch"
-    },
-    "D": {
       "item": "logicgateid:or_gate_block"
     }
   },
   "pattern": [
-    " C ",
-    "ADA",
-    "B B"
+    "BA ",
+    "B C",
+    " A "
   ],
   "result": {
     "count": 1,
-    "id": "logicgateid:nor_gate_block"
+    "id": "logicgateid:xnor_gate_block"
   }
 }

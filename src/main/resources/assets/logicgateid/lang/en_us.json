@@ -1,16 +1,9 @@
 {
-  "item.logicgateid.alexandrite": "Alexandrite Gem",
-  "item.logicgateid.raw_alexandrite": "Raw Alexandrite Gem",
-  "block.logicgateid.alexandrite_block": "Block of Alexandrite",
-  "block.logicgateid.raw_alexandrite_block": "Block of raw Alexandrite",
-  "block.logicgateid.alexandrite_ore": "Alexandrite ore",
-  "block.logicgateid.raw_alexandrite_deepslate_ore": "Alexandrite deepslate ore",
   "block.logicgateid.and_gate_block": "And Gate",
   "block.logicgateid.or_gate_block": "Or Gate",
   "block.logicgateid.nand_gate_block": "Nand Gate",
   "block.logicgateid.nor_gate_block": "Nor Gate",
   "block.logicgateid.xor_gate_block": "Xor Gate",
-  "creativetab.logicgateid.alexandrite_items": "Esyalar 1",
-  "creativetab.logicgateid.alexandrite_blocks": "Esyalar 2",
+  "block.logicgateid.xnor_gate_block": "Xnor Gate",
   "creativetab.logicgateid.logic_gate_blocks": "Logic Gate Items"
 }

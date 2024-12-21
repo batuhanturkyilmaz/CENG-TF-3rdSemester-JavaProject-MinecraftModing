@@ -8,14 +8,17 @@
     "B": {
       "item": "minecraft:lever"
     },
-  "C": {
-    "item": "minecraft:redstone_lamp"
+    "C": {
+    "item": "minecraft:redstone_torch"
+    },
+    "D": {
+      "item": "logicgateid:and_gate_block"
     }
   },
   "pattern": [
-    "ACA",
-    "ABA",
-    "BBA"
+    " C ",
+    "ADA",
+    "B B"
   ],
   "result": {
     "count": 1,

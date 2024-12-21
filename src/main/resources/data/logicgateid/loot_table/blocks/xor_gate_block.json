@@ -2,11 +2,25 @@
   "type": "minecraft:block",
   "pools": [
     {
-      "rolls": 4,
+      "rolls": 2,
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:redstone"
+          "name": "logicgateid:and_gate_block"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "logicgateid:or_gate_block"
         }
       ],
       "conditions": [
@@ -20,7 +34,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:lever"
+          "name": "logicgateid:nand_gate_block"
         }
       ],
       "conditions": [

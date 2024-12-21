@@ -7,12 +7,15 @@
     },
     "B": {
       "item": "minecraft:lever"
+    },
+    "C": {
+      "item": "minecraft:redstone_torch"
     }
   },
   "pattern": [
-    "A A",
-    "B B",
-    "AAA"
+    " C ",
+    "CAC",
+    "B B"
   ],
   "result": {
     "count": 1,

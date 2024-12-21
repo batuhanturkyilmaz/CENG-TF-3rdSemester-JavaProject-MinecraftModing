@@ -1,21 +1,14 @@
 package net.javaprojesi.logicgate;
-//github commit example.
 import com.mojang.logging.LogUtils;
-import net.javaprojesi.logicgate.block.AndGateBlock;
 import net.javaprojesi.logicgate.block.ModBlocks;
 import net.javaprojesi.logicgate.item.ModCreativeModeTabs;
 import net.javaprojesi.logicgate.item.Moditems;
 import net.minecraft.client.Minecraft;
-import net.minecraft.nbt.TextComponentTagVisitor;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraft.world.item.WrittenBookItem;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
-import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -27,8 +20,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.slf4j.Logger;
-
-import java.awt.*;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(logicGateMod.MOD_ID)
@@ -83,16 +74,8 @@ public class logicGateMod
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event)
     {
-        if(event.getTabKey() == CreativeModeTabs.INGREDIENTS){ //buranın altına eklenecek eşyaların girişini yapıyoruz
-            event.accept(Moditems.ALEXANDRITE);
-            event.accept(Moditems.RAW_ALEXANDRITE);
-        }
 
         if(event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS){//buranın altına eklenecek blokların girişini yapıyoruz
-            event.accept(ModBlocks.ALEXANDRITE_BLOCK);
-            event.accept(ModBlocks.RAW_ALEXANDRITE_BLOCK);
-            event.accept(ModBlocks.ALEXANDRITE_DEEPSLATE_ORE);
-            event.accept(ModBlocks.ALEXANDRITE_ORE);
             event.accept(ModBlocks.AND_GATE_BLOCK);
             event.accept(ModBlocks.OR_GATE_BLOCK);
             event.accept(ModBlocks.NAND_GATE_BLOCK);
