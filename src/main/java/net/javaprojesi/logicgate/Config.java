@@ -12,52 +12,73 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-// An example config class. This is not required, but it's a good idea to have one to keep your config organized.
-// Demonstrates how to use Forge's config APIs
+/// An example config class. This is not required, but it's a good idea to have one to keep your config organized.
+/// Demonstrates how to use Forge's config APIs
 @Mod.EventBusSubscriber(modid = logicGateMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class Config
 {
+    // The ForgeConfigSpec.Builder is used to build the configuration spec
     private static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
 
+    // Define a boolean config value for logging dirt block during common setup
+    // This is a setting for debugging or custom behavior, such as logging specific blocks during setup
+
     private static final ForgeConfigSpec.BooleanValue LOG_DIRT_BLOCK = BUILDER
-            .comment("Whether to log the dirt block on common setup")
-            .define("logDirtBlock", true);
+            .comment("Whether to log the dirt block on common setup") // Description for the setting
+            .define("logDirtBlock", true); // Default value is true, meaning dirt block will be logged
+
+    // Define an integer config value for a magic number
+    // This shows how to define a numerical configuration with a range of allowed values
 
     private static final ForgeConfigSpec.IntValue MAGIC_NUMBER = BUILDER
-            .comment("A magic number")
-            .defineInRange("magicNumber", 42, 0, Integer.MAX_VALUE);
+            .comment("A magic number")// Description for the setting
+            .defineInRange("magicNumber", 42, 0, Integer.MAX_VALUE); // Default value is 42, range is from 0 to Integer.MAX_VALUE
 
     public static final ForgeConfigSpec.ConfigValue<String> MAGIC_NUMBER_INTRODUCTION = BUILDER
             .comment("What you want the introduction message to be for the magic number")
             .define("magicNumberIntroduction", "The magic number is... ");
 
-    // a list of strings that are treated as resource locations for items
+    // Define a list of items that will be logged during common setup, using resource locations (e.g., minecraft:iron_ingot)
+    // This configuration allows you to define which items will be logged for debugging or other purposes
+    /// a list of strings that are treated as resource locations for items
     private static final ForgeConfigSpec.ConfigValue<List<? extends String>> ITEM_STRINGS = BUILDER
             .comment("A list of items to log on common setup.")
             .defineListAllowEmpty("items", List.of("minecraft:iron_ingot"), Config::validateItemName);
 
     static final ForgeConfigSpec SPEC = BUILDER.build();
 
+    // These fields hold the actual values for the configuration once it's loaded
+    // These are the values the mod will use during runtime
+
     public static boolean logDirtBlock;
     public static int magicNumber;
     public static String magicNumberIntroduction;
     public static Set<Item> items;
+
+    // Method to validate item names from the config list
+    // This checks if a given string corresponds to a valid item in Forge's item registry
 
     private static boolean validateItemName(final Object obj)
     {
         return obj instanceof final String itemName && ForgeRegistries.ITEMS.containsKey(ResourceLocation.tryParse(itemName));
     }
 
+    // Event listener that loads the configuration values when the mod config is loaded
+    // This method is called when the config is loaded or reloaded during runtime
+
     @SubscribeEvent
     static void onLoad(final ModConfigEvent event)
     {
+        // Assign the values from the configuration file to static fields
         logDirtBlock = LOG_DIRT_BLOCK.get();
         magicNumber = MAGIC_NUMBER.get();
-        magicNumberIntroduction = MAGIC_NUMBER_INTRODUCTION.get();
+        magicNumberIntroduction = MAGIC_NUMBER_INTRODUCTION.get();// The introduction message for the magic number
 
-        // convert the list of strings into a set of items
+        // Convert the list of strings (item names) into a set of actual item objects
+        // This will allow you to work with the actual item instances during runtime
         items = ITEM_STRINGS.get().stream()
                 .map(itemName -> ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse(itemName)))
-                .collect(Collectors.toSet());
+                // Look up each item by name
+                .collect(Collectors.toSet()); // Collect the results into a Set (no duplicates)
     }
 }

@@ -14,9 +14,9 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraft.world.phys.shapes.Shapes;
-//OR
+//OR Gate
 public class OrGateBlock extends Block {
-    // Giriş ve çıkış durumları
+    /// Giriş ve çıkış durumları
     public static final BooleanProperty INPUT1 = BooleanProperty.create("input1");
     public static final BooleanProperty INPUT2 = BooleanProperty.create("input2");
     public static final BooleanProperty OUTPUT = BooleanProperty.create("output");

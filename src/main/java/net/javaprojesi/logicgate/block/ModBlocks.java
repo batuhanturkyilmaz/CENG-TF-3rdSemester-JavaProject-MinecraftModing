@@ -13,7 +13,7 @@ import java.util.function.Supplier;
 
 
 
-public class ModBlocks implements registeryEs {
+public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS =
             DeferredRegister.create(ForgeRegistries.BLOCKS, logicGateMod.MOD_ID );
             //burada logicGateMod.MOD_ID dediğimiz, logicGateMod içinde @Mod() parantez içindeki kısmı içermelidir
@@ -53,9 +53,3 @@ public class ModBlocks implements registeryEs {
         BLOCKS.register(eventBus);
     }
 }
-
-
-interface registeryEs{
-
-}
-

@@ -21,43 +21,43 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.slf4j.Logger;
 
-// The value here should match an entry in the META-INF/mods.toml file
+/// The value here should match an entry in the META-INF/mods.toml file
 @Mod(logicGateMod.MOD_ID)
 public class logicGateMod
 {
-    // Define mod id in a common place for everything to reference
+    /// Define mod id in a common place for everything to reference
     public static final String MOD_ID = "logicgateid";
-    // Directly reference a slf4j logger
+    /// Directly reference a slf4j logger
     public static final Logger LOGGER = LogUtils.getLogger();
 
     public logicGateMod()
     {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        // Register the commonSetup method for modloading
+        /// Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
 
-        // Register ourselves for server and other game events we are interested in
+        /// Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
 
-        //burada tabları kaydeidyoruz
+        ///I registered a new tab here.
         ModCreativeModeTabs.register(modEventBus);
 
 
-        //buranın alt kısmına registerleri yazıyoruz
+        /// I registered Moditems and ModBlocks here.
         Moditems.register(modEventBus);
         ModBlocks.register(modEventBus);
 
-        // Register the item to a creative tab
+        /// Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
 
-        // Register our mod's ForgeConfigSpec so that Forge can create and load the config file for us
+        /// Register our mod's ForgeConfigSpec so that Forge can create and load the config file for us
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event)
     {
-        // Some common setup code
+        /// Some common setup code
         LOGGER.info("HELLO FROM COMMON SETUP");
 
         if (Config.logDirtBlock)
@@ -71,7 +71,7 @@ public class logicGateMod
 
 
 
-    // Add the example block item to the building blocks tab
+    /// Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event)
     {
 
@@ -88,25 +88,25 @@ public class logicGateMod
 
 
 
-    // You can use SubscribeEvent and let the Event Bus discover methods to call
+    /// You can use SubscribeEvent and let the Event Bus discover methods to call
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event)
     {
-        // Do something when the server starts
+        /// Do something when the server starts
         LOGGER.info("HELLO from server starting");
     }
 
 
 
 
-    // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
+    /// You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
     @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents
     {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event)
         {
-            // Some client setup code
+            /// Some client setup code
             LOGGER.info("HELLO FROM CLIENT SETUP");
             LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
         }
