@@ -21,69 +21,75 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.slf4j.Logger;
 
-/// The value here should match an entry in the META-INF/mods.toml file
+// @Mod(DEGER) bunun içindeki DEGER META-INF/mods.toml dosyasının içindeki değerle eşleşmelidir
 @Mod(logicGateMod.MOD_ID)
-public class logicGateMod
+public class logicGateMod// Main sınıfı
 {
-    /// Define mod id in a common place for everything to reference
+    // referans değeri olacak MOD_ID tanımlanır. Burada tanımlanan MOD_ID her yerde kullanılacaktır,
     public static final String MOD_ID = "logicgateid";
-    /// Directly reference a slf4j logger
+    // SLF4J (Simple Logging Facade for Java) kullanarak bir logger (günlük kaydı aracı) doğrudan referans alıyoruz.
+    // Bu logger, modun içinde meydana gelen önemli olayları, hataları veya bilgi mesajlarını kaydetmek için kullanılır.
     public static final Logger LOGGER = LogUtils.getLogger();
 
-    public logicGateMod()
+    public logicGateMod() //yapıcı metot
     {
+        // `modEventBus`, Forge'un sunduğu `IEventBus` arayüzünün bir örneğidir.
+        // Modlara özel olayların kaydedilmesi için kullanılır.
+        // Bu mekanizma, Forge'un olay sistemiyle modunuzun entegre olmasını sağlar.
+        // `FMLJavaModLoadingContext.get().getModEventBus()`
+        // metodu, mevcut mod için olayların işlendiği Mod Event Bus alır.
+        // Bu "Mod Olay Otobüsü", genellikle bloklar, eşyalar ve özel olay dinleyicilerinin
+        // kaydedilmesi gibi işlemler için kullanılır.
+        // Böylece, modun öğeleri ve davranışları Forge altyapısına düzgün bir şekilde entegre olur.
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        /// Register the commonSetup method for modloading
+        // Mod yüklemesi için commonSetup metodunu kaydediyoruz
         modEventBus.addListener(this::commonSetup);
 
-        /// Register ourselves for server and other game events we are interested in
+        // İlgilendiğimiz sunucu ve diğer oyun olayları için kendimizi kaydediyoruz
         MinecraftForge.EVENT_BUS.register(this);
 
-        ///I registered a new tab here.
-        ModCreativeModeTabs.register(modEventBus);
+        ModCreativeModeTabs.register(modEventBus);//Oyunda eklenecek tab menüsü buradan kaydediliyor.
+        Moditems.register(modEventBus);//Moditems'ın kaydedilmesi
+        ModBlocks.register(modEventBus);//ModBlocks'un kaydedilmesi
 
-
-        /// I registered Moditems and ModBlocks here.
-        Moditems.register(modEventBus);
-        ModBlocks.register(modEventBus);
-
-        /// Register the item to a creative tab
+        //Öğeyi yaratıcı sekmesine (creative tab) kaydediyoruz
         modEventBus.addListener(this::addCreative);
 
-        /// Register our mod's ForgeConfigSpec so that Forge can create and load the config file for us
+        // Modun ForgeConfigSpec'ini kaydediyoruz, böylece Forge bizim için yapılandırma dosyasını oluşturup yükleyebilir
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event)
     {
-        /// Some common setup code
+        //ortak kurulum kodları
         LOGGER.info("HELLO FROM COMMON SETUP");
 
         if (Config.logDirtBlock)
             LOGGER.info("DIRT BLOCK >> {}", ForgeRegistries.BLOCKS.getKey(Blocks.DIRT));
 
         LOGGER.info(Config.magicNumberIntroduction + Config.magicNumber);
-
+        // Konfigürasyondaki öğeler tek tek loglanır
         Config.items.forEach((item) -> LOGGER.info("ITEM >> {}", item.toString()));
     }
 
 
 
-
-    /// Add the example block item to the building blocks tab
+    // Örnek blok öğesini inşa blokları sekmesine ekliyoruz
     private void addCreative(BuildCreativeModeTabContentsEvent event)
     {
-
-        if(event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS){//buranın altına eklenecek blokların girişini yapıyoruz
-            event.accept(ModBlocks.AND_GATE_BLOCK);
-            event.accept(ModBlocks.OR_GATE_BLOCK);
-            event.accept(ModBlocks.NAND_GATE_BLOCK);
-            event.accept(ModBlocks.NOR_GATE_BLOCK);
-            event.accept(ModBlocks.XOR_GATE_BLOCK);
-            event.accept(ModBlocks.XNOR_GATE_BLOCK);
+        // Eğer sekme inşa blokları sekmesi ise, buranın altına ekleyeceğimiz blokları tanımlıyoruz
+        if(event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS){
+            event.accept(ModBlocks.AND_GATE_BLOCK);  // AND kapı bloğunu ekliyoruz
+            event.accept(ModBlocks.OR_GATE_BLOCK);   // OR kapı bloğunu ekliyoruz
+            event.accept(ModBlocks.NAND_GATE_BLOCK); // NAND kapı bloğunu ekliyoruz
+            event.accept(ModBlocks.NOR_GATE_BLOCK);  // NOR kapı bloğunu ekliyoruz
+            event.accept(ModBlocks.XOR_GATE_BLOCK);  // XOR kapı bloğunu ekliyoruz
+            event.accept(ModBlocks.XNOR_GATE_BLOCK); // XNOR kapı bloğunu ekliyoruz
         }
     }
+
+
 
 
 

@@ -13,7 +13,10 @@ import java.util.function.Supplier;
 
 
 
-public class ModBlocks {
+public class ModBlocks { //ModBlocks sınıfı
+    // Blokları Forge'un blok kayıt sistemine kaydedecek bir DeferredRegister oluşturuyoruz.
+    // Bu, modda tanımladığımız blokların Forge tarafından doğru şekilde işlenmesini sağlar.
+    // MOD_ID, modun benzersiz kimliğidir ve bloklar bu kimlik ile kaydedilir.
     public static final DeferredRegister<Block> BLOCKS =
             DeferredRegister.create(ForgeRegistries.BLOCKS, logicGateMod.MOD_ID );
             //burada logicGateMod.MOD_ID dediğimiz, logicGateMod içinde @Mod() parantez içindeki kısmı içermelidir
