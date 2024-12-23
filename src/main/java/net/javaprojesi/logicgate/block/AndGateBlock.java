@@ -15,41 +15,42 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-//and
+//and kapısı sınıfı
 public class AndGateBlock extends Block {
     // Giriş ve çıkış durumları
-    public static final BooleanProperty INPUT1 = BooleanProperty.create("input1");
+    public static final BooleanProperty INPUT1 = BooleanProperty.create("input1"); //yanlardan girilecek olan input1 ve input 2 değişkenleri true/false durumu için atandı
     public static final BooleanProperty INPUT2 = BooleanProperty.create("input2");
-    public static final BooleanProperty OUTPUT = BooleanProperty.create("output");
-    public static final DirectionProperty FACING = DirectionProperty.create("facing", Direction.Plane.HORIZONTAL);
 
-    public AndGateBlock() {
+    public static final BooleanProperty OUTPUT = BooleanProperty.create("output");//çıkış boolean değişkeni
+    public static final DirectionProperty FACING = DirectionProperty.create("facing", Direction.Plane.HORIZONTAL); // blok yönü değişkeni
+
+    public AndGateBlock() { //yapıcı metot
         super(BlockBehaviour.Properties.of().strength(1.0f).noOcclusion());
         this.registerDefaultState(this.stateDefinition.any()
-                .setValue(INPUT1, false)
+                .setValue(INPUT1, false) //blok durumları default olarak false tanımlanıyor ve yön değeri giriliyor
                 .setValue(INPUT2, false)
                 .setValue(OUTPUT, false)
                 .setValue(FACING, Direction.NORTH));
     }
 
-    //bu iki lanet olası kod bloğun şeklini yarıya düşürdüğümde bir blokmuşo gibi algılamamasını sağlıyor. Süper. Ç ok uğraştırdı
+    // Blok şekli slab yüksekliğinde olacak şekilde tanımlanıyor.
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, net.minecraft.world.phys.shapes.CollisionContext context) {
         // Bloğun üst kısmı slab yüksekliğinde olacak şekilde ayarlanıyor
         return Shapes.box(0.0, 0.0, 0.0, 1.0, 0.5, 1.0);
     }
-
+    // Çarpışma kutusu slab yüksekliğinde tanımlanıyor.
     @Override
     public VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, net.minecraft.world.phys.shapes.CollisionContext context) {
         // Çarpışma kutusu slab yüksekliğine göre ayarlanıyor
         return Shapes.box(0.0, 0.0, 0.0, 1.0, 0.5, 1.0);
     }
 
-
+    // Blok, oyuncunun baktığı yöne göre yerleştirr
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        // Bloğu oyuncunun baktığı yöne göre yerleştir
-        Player player = context.getPlayer();
+        // Bloğu oyuncunun baktığı yöne göre yerleştirmesi için kullanılan fonksiyon
+        Player player = context.getPlayer(); // Oyuncu bilgisi alınan değişken
         return this.defaultBlockState()
                 .setValue(FACING, player != null ? player.getDirection() : Direction.NORTH);
     }
