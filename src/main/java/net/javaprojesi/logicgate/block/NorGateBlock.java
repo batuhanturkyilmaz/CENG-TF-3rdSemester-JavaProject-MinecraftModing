@@ -15,81 +15,91 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-// NOR Gate
+// NOR Kapısı Bloğu
 public class NorGateBlock extends Block {
-    // Input and output states
-    public static final BooleanProperty INPUT1 = BooleanProperty.create("input1");
-    public static final BooleanProperty INPUT2 = BooleanProperty.create("input2");
-    public static final BooleanProperty OUTPUT = BooleanProperty.create("output");
-    public static final DirectionProperty FACING = DirectionProperty.create("facing", Direction.Plane.HORIZONTAL);
+    // Giriş ve çıkış durumları
+    public static final BooleanProperty INPUT1 = BooleanProperty.create("input1"); // Birinci giriş
+    public static final BooleanProperty INPUT2 = BooleanProperty.create("input2"); // İkinci giriş
+    public static final BooleanProperty OUTPUT = BooleanProperty.create("output"); // Çıkış
+    public static final DirectionProperty FACING = DirectionProperty.create("facing", Direction.Plane.HORIZONTAL); // Blok yönü
 
+    // Yapıcı metot: Bloğun varsayılan durumlarını ayarlıyoruz
     public NorGateBlock() {
         super(BlockBehaviour.Properties.of().strength(1.0f).noOcclusion());
+        // Blok durumu varsayılan olarak false olarak başlatılır
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(INPUT1, false)
                 .setValue(INPUT2, false)
-                .setValue(OUTPUT, true) // Default output is true for NOR
-                .setValue(FACING, Direction.NORTH));
+                .setValue(OUTPUT, true) // NOR için varsayılan çıkış true'dur
+                .setValue(FACING, Direction.NORTH)); // Varsayılan yön kuzeydir
     }
 
+    // Bloğun şekli (slab yüksekliği gibi) belirleniyor
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, net.minecraft.world.phys.shapes.CollisionContext context) {
-        return Shapes.box(0.0, 0.0, 0.0, 1.0, 0.5, 1.0);
+        return Shapes.box(0.0, 0.0, 0.0, 1.0, 0.5, 1.0); // Yükseklik yarım blok
     }
 
+    // Çarpışma şekli, aynı şekilde slab yüksekliğinde belirleniyor
     @Override
     public VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, net.minecraft.world.phys.shapes.CollisionContext context) {
-        return Shapes.box(0.0, 0.0, 0.0, 1.0, 0.5, 1.0);
+        return Shapes.box(0.0, 0.0, 0.0, 1.0, 0.5, 1.0); // Çarpışma kutusu yarım blok yüksekliğinde
     }
 
+    // Blok, oyuncunun baktığı yöne göre yerleştirilir
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        Player player = context.getPlayer();
+        Player player = context.getPlayer(); // Oyuncu bilgisi alınır
         return this.defaultBlockState()
-                .setValue(FACING, player != null ? player.getDirection() : Direction.NORTH);
+                .setValue(FACING, player != null ? player.getDirection() : Direction.NORTH); // Oyuncunun yönüne göre blok yerleştirilir
     }
 
+    // Blok durumlarının tanımlandığı metot
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(INPUT1, INPUT2, OUTPUT, FACING);
+        builder.add(INPUT1, INPUT2, OUTPUT, FACING); // Durumda olacak tüm özellikler eklenir
     }
 
+    // Komşu bloklardan gelen değişikliklere tepki verir
     @Override
     public void neighborChanged(BlockState state, Level level, BlockPos pos, Block block, BlockPos neighborPos, boolean isMoving) {
         if (!level.isClientSide) {
-            Direction facing = state.getValue(FACING);
+            Direction facing = state.getValue(FACING); // Blok yönünü al
 
-            // Get input signals from the left and right sides
-            boolean input1 = isReceivingSignal(level, pos.relative(facing.getCounterClockWise())); // Left side
-            boolean input2 = isReceivingSignal(level, pos.relative(facing.getClockWise()));       // Right side
-            boolean output = !(input1 || input2); // NOR logic
+            // Sol ve sağ girişlerden sinyalleri al
+            boolean input1 = isReceivingSignal(level, pos.relative(facing.getCounterClockWise())); // Sol taraftan sinyal al
+            boolean input2 = isReceivingSignal(level, pos.relative(facing.getClockWise()));       // Sağ taraftan sinyal al
+            boolean output = !(input1 || input2); // NOR mantığı
 
-            // Update block state if the output has changed
+            // Çıkış durumu değişmişse, blok durumu güncellenir
             if (state.getValue(OUTPUT) != output) {
                 level.setBlock(pos, state.setValue(INPUT1, input1).setValue(INPUT2, input2).setValue(OUTPUT, output), 3);
-                level.updateNeighborsAt(pos.relative(facing), this); // Propagate signal to neighboring blocks
+                level.updateNeighborsAt(pos.relative(facing), this); // Komşu bloklara sinyal gönder
             }
         }
     }
 
+    // Belirli bir konumda redstone sinyalinin olup olmadığını kontrol et
     private boolean isReceivingSignal(Level level, BlockPos pos) {
-        // Check for redstone signal at the specified position
-        return level.getSignal(pos, Direction.DOWN) > 0 || level.hasSignal(pos, Direction.UP);
+        return level.getSignal(pos, Direction.DOWN) > 0 || level.hasSignal(pos, Direction.UP); // Down ve Up yönlerinden sinyal alınıp alınmadığı kontrol edilir
     }
 
+    // Bu blok bir sinyal kaynağı olabilir
     @Override
     public boolean isSignalSource(BlockState state) {
-        return true; // Block can be a redstone source
+        return true; // Blok, redstone kaynağı olabilir
     }
 
+    // Çıkış sinyalini yönlendirir
     @Override
     public int getSignal(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
-        // Return output signal based on the facing direction
-        return direction == state.getValue(FACING) && state.getValue(OUTPUT) ? 15 : 0;
+        // Çıkış sinyali, yön ve çıkış durumuna göre belirlenir
+        return direction == state.getValue(FACING) && state.getValue(OUTPUT) ? 15 : 0; // Eğer doğru yöndeyse ve çıkış true ise, maksimum sinyal gücü (15) gönderilir
     }
 
+    // Direkt sinyal iletimi
     @Override
     public int getDirectSignal(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
-        return getSignal(state, level, pos, direction);
+        return getSignal(state, level, pos, direction); // Direkt sinyal, normal sinyalle aynıdır
     }
 }
