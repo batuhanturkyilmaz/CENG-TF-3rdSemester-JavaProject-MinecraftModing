@@ -3,6 +3,7 @@ Do you have IntelliJ IDEA and Eclipse JDK 21 installed? If so, proceed with the 
 
 1)
    1.1)For IntelliJ IDEA, Visit https://www.jetbrains.com/idea/ and download IDE
+  
    1.2) visit https://adoptium.net/temurin/releases/
    - For windows
      -> Download the .msi file compatible with your CPU architecture.
