@@ -1,4 +1,4 @@
-                                  "How to set up working environment?
+                                  How to set up working environment?
 Do you have IntelliJ IDEA and Eclipse JDK 21 installed? If so, proceed with the second option; otherwise, proceed with the first.
 
 1)
