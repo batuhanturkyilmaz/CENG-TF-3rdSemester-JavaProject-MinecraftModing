@@ -67,6 +67,15 @@ For the first run, double-click on Gradle -> Tasks -> forgegradle runs -> runCli
 
 ![image](https://github.com/user-attachments/assets/28b66558-d969-4eaf-bf55-841e35743856)
 
+then select continue,
+
+![image](https://github.com/user-attachments/assets/44e90710-742a-4889-ab74-7e6017bc884c)
+
+![image](https://github.com/user-attachments/assets/ed610576-fdb5-483e-8e53-0cbf3f2974e3)
+
+
+
+
 
    
 
