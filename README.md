@@ -29,7 +29,7 @@ For a custom setup, select 'Set or override JAVA_HOME' and choose 'Will be insta
 
  Finally, complete the setup and then proceed with the second option.
 
-3) First , download the repository
+2) First , download the repository
 
 ![image](https://github.com/user-attachments/assets/95351b25-f9b8-45aa-900a-433ae3b19ea0)
 
